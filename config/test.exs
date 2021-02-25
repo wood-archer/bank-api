@@ -20,3 +20,15 @@ config :bank_api, BankAPIWeb.Endpoint,
 
 # Print only warnings and errors during test
 config :logger, level: :warn
+
+config :bank_api, BankAPI.App,
+  event_store: [
+    adapter: Commanded.EventStore.Adapters.InMemory,
+    event_store: BankAPI.EventStore
+  ]
+
+config :bank_api, BankAPI.EventStore,
+  username: "postgres",
+  password: "postgres",
+  database: "bank_api_eventstore_test",
+  hostname: "localhost"

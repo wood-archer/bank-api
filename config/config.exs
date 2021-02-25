@@ -28,6 +28,21 @@ config :logger, :console,
 # Use Jason for JSON parsing in Phoenix
 config :phoenix, :json_library, Jason
 
+config :bank_api, BankAPI.App,
+  event_store: [
+    adapter: Commanded.EventStore.Adapters.EventStore,
+    event_store: BankAPI.EventStore
+  ],
+  pub_sub: :local,
+  registry: :local
+
+config :bank_api, BankAPI.EventStore,
+  column_data_type: "jsonb",
+  serializer: Commanded.Serialization.JsonSerializer,
+  types: EventStore.PostgresTypes
+
+config :bank_api, event_stores: [BankAPI.EventStore]
+
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
 import_config "#{Mix.env()}.exs"

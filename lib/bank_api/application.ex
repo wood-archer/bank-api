@@ -7,6 +7,8 @@ defmodule BankAPI.Application do
 
   def start(_type, _args) do
     children = [
+      # Start the commanded application
+      BankAPI.App,
       # Start the Ecto repository
       BankAPI.Repo,
       # Start the Telemetry supervisor
@@ -14,7 +16,9 @@ defmodule BankAPI.Application do
       # Start the PubSub system
       {Phoenix.PubSub, name: BankAPI.PubSub},
       # Start the Endpoint (http/https)
-      BankAPIWeb.Endpoint
+      BankAPIWeb.Endpoint,
+      # Start EventStore
+      BankAPI.EventStore
       # Start a worker by calling: BankAPI.Worker.start_link(arg)
       # {BankAPI.Worker, arg}
     ]
