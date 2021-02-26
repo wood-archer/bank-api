@@ -1,5 +1,7 @@
 defmodule BankAPI.Accounts do
-  # The Accounts context.
+  @moduledoc """
+  The Accounts context.
+  """
 
   import Ecto.Query, warn: false
 
