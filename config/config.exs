@@ -10,7 +10,16 @@ use Mix.Config
 config :bank_api,
   namespace: BankAPI,
   ecto_repos: [BankAPI.Repo],
+  event_stores: [BankAPI.EventStore],
   generators: [binary_id: true]
+
+config :bank_api, BankAPI.App,
+  event_store: [
+    adapter: Commanded.EventStore.Adapters.EventStore,
+    event_store: BankAPI.EventStore
+  ],
+  pub_sub: :local,
+  registry: :local
 
 # Configures the endpoint
 config :bank_api, BankAPIWeb.Endpoint,
@@ -25,23 +34,19 @@ config :logger, :console,
   format: "$time $metadata[$level] $message\n",
   metadata: [:request_id]
 
+config :commanded,
+  event_store_adapter: Commanded.EventStore.Adapters.EventStore
+
+config :commanded_ecto_projections,
+  repo: BankAPI.Repo
+
 # Use Jason for JSON parsing in Phoenix
 config :phoenix, :json_library, Jason
-
-config :bank_api, BankAPI.App,
-  event_store: [
-    adapter: Commanded.EventStore.Adapters.EventStore,
-    event_store: BankAPI.EventStore
-  ],
-  pub_sub: :local,
-  registry: :local
 
 config :bank_api, BankAPI.EventStore,
   column_data_type: "jsonb",
   serializer: Commanded.Serialization.JsonSerializer,
   types: EventStore.PostgresTypes
-
-config :bank_api, event_stores: [BankAPI.EventStore]
 
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
