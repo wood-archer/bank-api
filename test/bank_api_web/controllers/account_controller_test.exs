@@ -15,7 +15,8 @@ defmodule BankAPI.AccountControllerTest do
   describe "create account" do
     test "renders account when data is valid", %{conn: conn} do
       path = Routes.account_path(conn, :create)
-      request = post(conn, path, account: @create_attrs)
+      params = %{account: @create_attrs}
+      request = post(conn, path, params)
       response = json_response(request, 201)
 
       assert %{
@@ -28,7 +29,8 @@ defmodule BankAPI.AccountControllerTest do
 
     test "renders error when data is invalid", %{conn: conn} do
       path = Routes.account_path(conn, :create)
-      request = post(conn, path, account: @invalid_attrs)
+      params = %{account: @invalid_attrs}
+      request = post(conn, path, params)
       response = json_response(request, 422)
 
       assert %{"errors" => _} = response
