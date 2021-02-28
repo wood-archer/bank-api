@@ -55,3 +55,9 @@ config :phoenix, :stacktrace_depth, 20
 
 # Initialize plugs at runtime for faster development compilation
 config :phoenix, :plug_init_mode, :runtime
+
+config :bank_api, BankAPI.EventStore,
+  username: "postgres",
+  password: "postgres",
+  database: "bank_api_eventstore_dev",
+  hostname: "localhost"

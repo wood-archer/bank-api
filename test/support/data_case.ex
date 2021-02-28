@@ -18,8 +18,11 @@ defmodule BankAPI.DataCase do
 
   using do
     quote do
-      alias BankAPI.Repo
+      alias Repo
 
+      alias BankAPI.Repo
+      alias Ecto.Adapters.SQL.Sandbox
+      alias Ecto.Changeset
       import Ecto
       import Ecto.Changeset
       import Ecto.Query
@@ -28,10 +31,10 @@ defmodule BankAPI.DataCase do
   end
 
   setup tags do
-    :ok = Ecto.Adapters.SQL.Sandbox.checkout(BankAPI.Repo)
+    :ok = Sandbox.checkout(Repo)
 
     unless tags[:async] do
-      Ecto.Adapters.SQL.Sandbox.mode(BankAPI.Repo, {:shared, self()})
+      Sandbox.mode(Repo, {:shared, self()})
     end
 
     :ok
@@ -46,7 +49,7 @@ defmodule BankAPI.DataCase do
 
   """
   def errors_on(changeset) do
-    Ecto.Changeset.traverse_errors(changeset, fn {message, opts} ->
+    Changeset.traverse_errors(changeset, fn {message, opts} ->
       Regex.replace(~r"%{(\w+)}", message, fn _, key ->
         opts |> Keyword.get(String.to_existing_atom(key), key) |> to_string()
       end)

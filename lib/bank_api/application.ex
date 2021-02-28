@@ -9,12 +9,16 @@ defmodule BankAPI.Application do
     children = [
       # Start the Ecto repository
       BankAPI.Repo,
+      # Start the commanded application
+      BankAPI.App,
       # Start the Telemetry supervisor
       BankAPIWeb.Telemetry,
       # Start the PubSub system
       {Phoenix.PubSub, name: BankAPI.PubSub},
       # Start the Endpoint (http/https)
-      BankAPIWeb.Endpoint
+      BankAPIWeb.Endpoint,
+      # Start account supervisor
+      BankAPI.Accounts.Supervisor
       # Start a worker by calling: BankAPI.Worker.start_link(arg)
       # {BankAPI.Worker, arg}
     ]

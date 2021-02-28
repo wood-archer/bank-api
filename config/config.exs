@@ -10,7 +10,29 @@ use Mix.Config
 config :bank_api,
   namespace: BankAPI,
   ecto_repos: [BankAPI.Repo],
+  event_stores: [BankAPI.EventStore],
   generators: [binary_id: true]
+
+# Configures event store
+config :commanded,
+  event_store_adapter: Commanded.EventStore.Adapters.EventStore,
+  default_consistency: :strong
+
+config :commanded_ecto_projections,
+  repo: BankAPI.Repo
+
+config :bank_api, BankAPI.App,
+  event_store: [
+    adapter: Commanded.EventStore.Adapters.EventStore,
+    event_store: BankAPI.EventStore
+  ],
+  pub_sub: :local,
+  registry: :local
+
+config :bank_api, BankAPI.EventStore,
+  column_data_type: "jsonb",
+  serializer: Commanded.Serialization.JsonSerializer,
+  types: EventStore.PostgresTypes
 
 # Configures the endpoint
 config :bank_api, BankAPIWeb.Endpoint,
