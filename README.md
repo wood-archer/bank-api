@@ -4,7 +4,7 @@ To start your Phoenix server:
 
   * Install dependencies with `mix deps.get`
   * Create and migrate your database with `mix ecto.setup`
-  * Create and initialize event store with `mix do event_store.create, event_store.init`
+  * Create and initialize event store database with `mix do event_store.create, event_store.init`
   * Start Phoenix endpoint with `mix phx.server`
 
 Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
