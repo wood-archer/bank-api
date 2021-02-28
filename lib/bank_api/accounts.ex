@@ -21,12 +21,12 @@ defmodule BankAPI.Accounts do
     if changeset.valid? do
       account_uuid = UUID.uuid4()
 
-      dispatch_result =
-        %OpenAccount{
-          initial_balance: changeset.changes.initial_balance,
-          account_uuid: account_uuid
-        }
-        |> Router.dispatch()
+      command = %OpenAccount{
+        initial_balance: changeset.changes.initial_balance,
+        account_uuid: account_uuid
+      }
+
+      dispatch_result = Router.dispatch(command)
 
       case dispatch_result do
         :ok ->
