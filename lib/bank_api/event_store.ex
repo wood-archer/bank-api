@@ -1,8 +1,5 @@
 defmodule BankAPI.EventStore do
-  use EventStore, otp_app: :bank_api
+  @moduledoc false
 
-  # Optional `init/1` function to modify config at runtime.
-  def init(config) do
-    {:ok, config}
-  end
+  use EventStore, otp_app: :bank_api
 end

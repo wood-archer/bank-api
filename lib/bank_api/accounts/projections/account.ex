@@ -1,4 +1,6 @@
 defmodule BankAPI.Accounts.Projections.Account do
+  @moduledoc false
+
   use Ecto.Schema
 
   @primary_key {:uuid, :binary_id, autogenerate: false}

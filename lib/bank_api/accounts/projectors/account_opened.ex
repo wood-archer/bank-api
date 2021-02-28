@@ -1,4 +1,6 @@
 defmodule BankAPI.Accounts.Projectors.AccountOpened do
+  @moduledoc false
+
   use Commanded.Projections.Ecto,
     name: "Accounts.Projectors.AccountOpened",
     application: BankAPI.App,

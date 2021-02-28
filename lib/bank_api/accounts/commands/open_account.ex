@@ -1,4 +1,6 @@
 defmodule BankAPI.Accounts.Commands.OpenAccount do
+  @moduledoc false
+
   use TypedStruct
 
   typedstruct do

@@ -1,4 +1,6 @@
 defmodule BankAPI.Accounts.Aggregates.Account do
+  @moduledoc false
+
   use TypedStruct
 
   alias __MODULE__

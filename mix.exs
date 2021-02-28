@@ -47,7 +47,8 @@ defmodule BankAPI.MixProject do
       {:eventstore, "~> 1.2"},
       {:commanded_eventstore_adapter, "~> 1.2.0"},
       {:commanded_ecto_projections, "~> 1.2"},
-      {:typed_struct, "~> 0.2.1"}
+      {:typed_struct, "~> 0.2.1"},
+      {:credo, "~> 1.5", only: [:dev, :test], runtime: false}
     ]
   end
 

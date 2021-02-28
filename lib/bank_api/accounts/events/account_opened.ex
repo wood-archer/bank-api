@@ -1,4 +1,6 @@
 defmodule BankAPI.Accounts.Events.AccountOpened do
+  @moduledoc false
+
   use TypedStruct
 
   @derive [Jason.Encoder]
