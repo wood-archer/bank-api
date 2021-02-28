@@ -1,10 +1,13 @@
 defmodule BankAPI.Accounts.Aggregates.Account do
-  defstruct uuid: nil,
-            current_balance: nil
+  use TypedStruct
 
   alias __MODULE__
-  alias BankAPI.Accounts.Commands.OpenAccount
-  alias BankAPI.Accounts.Events.AccountOpened
+  alias BankAPI.Accounts.{Commands.OpenAccount, Events.AccountOpened}
+
+  typedstruct do
+    field :uuid, String.t()
+    field :current_balance, integer()
+  end
 
   def execute(
         %Account{uuid: nil},

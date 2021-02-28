@@ -1,5 +1,8 @@
 defmodule BankAPI.Accounts.Commands.OpenAccount do
-  @enforce_keys [:account_uuid]
+  use TypedStruct
 
-  defstruct [:account_uuid, :initial_balance]
+  typedstruct do
+    field :account_uuid, String.t(), enforce: true
+    field :initial_balance, integer()
+  end
 end

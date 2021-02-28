@@ -1,8 +1,10 @@
 defmodule BankAPI.Accounts.Events.AccountOpened do
+  use TypedStruct
+
   @derive [Jason.Encoder]
 
-  defstruct [
-    :account_uuid,
-    :initial_balance
-  ]
+  typedstruct do
+    field :account_uuid, String.t()
+    field :initial_balance, integer()
+  end
 end
