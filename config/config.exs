@@ -13,7 +13,7 @@ config :bank_api,
   event_stores: [BankAPI.EventStore],
   generators: [binary_id: true]
 
-# Configures event store
+# Configures Event Store
 config :commanded,
   event_store_adapter: Commanded.EventStore.Adapters.EventStore,
   default_consistency: :strong
