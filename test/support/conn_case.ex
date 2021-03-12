@@ -17,9 +17,6 @@ defmodule BankAPIWeb.ConnCase do
 
   use ExUnit.CaseTemplate
 
-  alias BankAPI.Repo
-  alias Ecto.Adapters.SQL.Sandbox
-
   using do
     quote do
       # Import conveniences for testing with connections
@@ -35,12 +32,6 @@ defmodule BankAPIWeb.ConnCase do
   end
 
   setup tags do
-    :ok = Sandbox.checkout(Repo)
-
-    unless tags[:async] do
-      Sandbox.mode(Repo, {:shared, self()})
-    end
-
     {:ok, conn: Phoenix.ConnTest.build_conn()}
   end
 end

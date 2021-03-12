@@ -31,12 +31,6 @@ defmodule BankAPI.DataCase do
   end
 
   setup tags do
-    :ok = Sandbox.checkout(Repo)
-
-    unless tags[:async] do
-      Sandbox.mode(Repo, {:shared, self()})
-    end
-
     :ok
   end
 
