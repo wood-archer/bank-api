@@ -22,6 +22,6 @@ defmodule BankAPI.Accounts.Commands.OpenAccount do
   end
 
   defp positive_integer(data) when is_integer(data) and data > 0, do: :ok
-  defp positive_integer(data) when data <= 0, do: {:error, "Argument must be bigger than zero"}
+  defp positive_integer(data) when data <= 0, do: {:error, "Argument must be bigger than zero."}
   defp positive_integer(_), do: {:error, "Argument must be an integer."}
 end
