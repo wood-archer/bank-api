@@ -13,9 +13,7 @@ defmodule BankAPI.Accounts.AccountsTest do
   end
 
   test "does not dispatch command with invalid payload" do
-    params = %{
-      "bad_key" => 1_000
-    }
+    params = %{"bad_key" => 1_000}
 
     assert {:error, :bad_command} = Accounts.open_account(params)
   end
