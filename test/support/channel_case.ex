@@ -31,13 +31,5 @@ defmodule BankAPIWeb.ChannelCase do
     end
   end
 
-  setup tags do
-    :ok = Sandbox.checkout(Repo)
-
-    unless tags[:async] do
-      Sandbox.mode(Repo, {:shared, self()})
-    end
-
-    :ok
-  end
+  setup _tags, do: :ok
 end

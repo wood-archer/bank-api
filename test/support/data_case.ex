@@ -30,15 +30,7 @@ defmodule BankAPI.DataCase do
     end
   end
 
-  setup tags do
-    :ok = Sandbox.checkout(Repo)
-
-    unless tags[:async] do
-      Sandbox.mode(Repo, {:shared, self()})
-    end
-
-    :ok
-  end
+  setup _tags, do: :ok
 
   @doc """
   A helper that transforms changeset errors into a map of messages.

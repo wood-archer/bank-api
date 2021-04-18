@@ -10,7 +10,7 @@ defmodule BankAPI.MixProject do
       compilers: [:phoenix, :gettext] ++ Mix.compilers(),
       start_permanent: Mix.env() == :prod,
       aliases: aliases(),
-      deps:     deps()
+      deps: deps()
     ]
   end
 
@@ -48,7 +48,8 @@ defmodule BankAPI.MixProject do
       {:commanded_eventstore_adapter, "~> 1.2.0"},
       {:commanded_ecto_projections, "~> 1.2"},
       {:typed_struct, "~> 0.2.1"},
-      {:credo, "~> 1.5", only: [:dev, :test], runtime: false}
+      {:credo, "~> 1.5", only: [:dev, :test], runtime: false},
+      {:skooma, "~> 0.2.0"}
     ]
   end
 
