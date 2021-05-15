@@ -13,4 +13,18 @@ defmodule BankAPIWeb.AccountController do
       |> render("show.json", account: account)
     end
   end
+
+  def show(conn, %{"id" => account_id}) do
+    with {:ok, %Account{} = account} <- Accounts.get_account(account_id) do
+      conn
+      |> put_status(:ok)
+      |> render("show.json", account: account)
+    end
+  end
+
+  def delete(conn, %{"id" => account_id}) do
+    with :ok <- Accounts.close_account(account_id) do
+      send_resp(conn, 200, "")
+    end
+  end
 end

@@ -27,10 +27,10 @@ defmodule BankAPI.Accounts.AccountsTest do
             ["Expected INTEGER, got STRING \"1_000\", at initial_balance"]} =
              Accounts.open_account(params_0)
 
-    assert {:error, :command_validation_failure, _cmd, ["Argument must be bigger than zero."]} =
+    assert {:error, :command_validation_failure, _cmd, ["Argument must be bigger than 0"]} =
              Accounts.open_account(params_1)
 
-    assert {:error, :command_validation_failure, _cmd, ["Argument must be bigger than zero."]} =
+    assert {:error, :command_validation_failure, _cmd, ["Argument must be bigger than 0"]} =
              Accounts.open_account(params_2)
   end
 end
